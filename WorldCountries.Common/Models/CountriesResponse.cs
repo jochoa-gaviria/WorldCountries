@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WorldCountries.Common.Models
 {
-    class CountriesResponse
+    public class CountriesResponse
     {
         public string name { get; set; }
         public List<string> topLevelDomain { get; set; }
