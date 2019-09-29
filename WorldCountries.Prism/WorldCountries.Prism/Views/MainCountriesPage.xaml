@@ -1,7 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
              xmlns:prism="http://prismlibrary.com"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+		     xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="WorldCountries.Prism.Views.MainCountriesPage"
              Title="{Binding Title}">
@@ -12,21 +16,127 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 Padding="10">
-                <Label
-                    Text="Email"/>
-                <Entry
-                    Keyboard="Email"
-                    Placeholder="Enter your email..."
-                    Text="{Binding Email}"/>
-                <Label
-                    Text="Password"/>
-                <Entry
-                    IsPassword="True"
-                    Placeholder="Enter your password..."
-                    Text="{Binding Password}"/>
-                <ActivityIndicator
-              Color="Red" IsRunning="{Binding IsRunning}" VerticalOptions="CenterAndExpand" />
+                <ListView
+                    BackgroundColor="Transparent"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding Countries}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    Margin="0,0,0,5">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <ffimageloadingsvg:SvgCachedImage
+                                            Grid.Column="0"
+                                            Source="{Binding Flag}"
+                                            LoadingPlaceholder= "LoaderImage"
+                                            ErrorPlaceholder= "ErrorImage"
+                                            CacheDuration= "50"
+                                            RetryCount= "3"
+                                            RetryDelay= "600"
+                                            DownsampleToViewSize = "true"
+                                            WidthRequest="50"
+                                            Aspect="AspectFit">
+                                            <ffimageloading:CachedImage.Transformations>
+                                                <ffTrans:CircleTransformation
+                                                    BorderHexColor="#000000" 
+                                                    BorderSize="3"
+                                                />
+                                            </ffimageloading:CachedImage.Transformations>
+                                        </ffimageloadingsvg:SvgCachedImage>
+                                        <Grid
+                                            Grid.Column="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="0"
+                                                Text="Name"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Name}"/>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="1"
+                                                Text="Code"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="1"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Alpha3Code}"/>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="2"
+                                                Text="Capital"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="2"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Capital}"/>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="3"
+                                                Text="Region"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="3"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Region}"/>
+                                            <Label
+                                                Grid.Column="0"
+                                                Grid.Row="4"
+                                                Text="Population"/>
+                                            <Label
+                                                Grid.Column="1"
+                                                Grid.Row="4"
+                                                FontAttributes="Bold"
+                                                Text="{Binding Population}"/>
+                                        </Grid>
+                                        <Image
+                                            Grid.Column="2"
+                                            Source="ic_chevron_right"/>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
+            <busyindicator:SfBusyIndicator  
+                AnimationType="Ball"
+                AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                AbsoluteLayout.LayoutFlags="All"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Center"
+                TextColor="Black"
+                IsVisible="{Binding IsRunning}"
+                Title="Wait a second please..."
+                VerticalOptions="Center"
+                ViewBoxWidth="80"
+                ViewBoxHeight="80" 
+                Duration="0.5"/>
         </AbsoluteLayout>
     </ScrollView>
 

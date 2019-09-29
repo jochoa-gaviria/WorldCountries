@@ -6,29 +6,29 @@ namespace WorldCountries.Common.Models
 {
     public class CountriesResponse
     {
-        public string name { get; set; }
-        public List<string> topLevelDomain { get; set; }
-        public string alpha2Code { get; set; }
-        public string alpha3Code { get; set; }
-        public List<string> callingCodes { get; set; }
-        public string capital { get; set; }
-        public List<object> altSpellings { get; set; }
-        public string region { get; set; }
-        public string subregion { get; set; }
-        public int population { get; set; }
-        public List<object> latlng { get; set; }
-        public string demonym { get; set; }
-        public double? area { get; set; }
-        public double? gini { get; set; }
-        public List<string> timezones { get; set; }
-        public List<object> borders { get; set; }
-        public string nativeName { get; set; }
-        public string numericCode { get; set; }
-        public List<CurrencyResponse> currencies { get; set; }
-        public List<LanguageResponse> languages { get; set; }
-        public TranslationsResponse translations { get; set; }
-        public string flag { get; set; }
-        public List<object> regionalBlocs { get; set; }
-        public string cioc { get; set; }
+        public string Name { get; set; }
+        public List<string> TopLevelDomain { get; set; }
+        public string Alpha2Code { get; set; }
+        public string Alpha3Code { get; set; }
+        public List<string> CallingCodes { get; set; }
+        public string Capital { get; set; }
+        public List<object> AltSpellings { get; set; }
+        public string Region { get; set; }
+        public string Subregion { get; set; }
+        public int Population { get; set; }
+        public List<object> Latlng { get; set; }
+        public string Demonym { get; set; }
+        public double? Area { get; set; }
+        public double? Gini { get; set; }
+        public List<string> Timezones { get; set; }
+        public List<object> Borders { get; set; }
+        public string NativeName { get; set; }
+        public string NumericCode { get; set; }
+        public ICollection<CurrencyResponse> Currencies { get; set; }
+        public ICollection<LanguageResponse> Languages { get; set; }
+        public TranslationsResponse Translations { get; set; }
+        public string Flag { get; set; }
+        public List<object> RegionalBlocs { get; set; }
+        public string Cioc { get; set; }
     }
 }

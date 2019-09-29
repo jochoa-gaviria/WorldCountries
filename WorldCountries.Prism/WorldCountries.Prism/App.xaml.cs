@@ -22,6 +22,7 @@ namespace WorldCountries.Prism
 
         protected override async void OnInitialized()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTQwMjIzQDMxMzcyZTMyMmUzMERIbnptd0h4NTdqUWs1cGRjdFpoMnZWWjhZNnVWT1FDRWd0cE1CWVl3cnM9");
             InitializeComponent();
 
             await NavigationService.NavigateAsync("NavigationPage/MainCountriesPage");
