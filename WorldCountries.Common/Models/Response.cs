@@ -10,6 +10,6 @@ namespace WorldCountries.Common.Models
 
         public string Message { get; set; }
 
-        public T Result { get; set; }
+        public List<T> Result { get; set; }
     }
 }

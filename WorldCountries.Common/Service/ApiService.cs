@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Plugin.Connectivity;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,18 +21,21 @@ namespace WorldCountries.Common.Service
             return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
 
-        public async Task<Response<CountriesResponse>> GetCountriesAsync(string urlBase, string servicePrefix, string controller, string request)
+        public async Task<Response<CountriesResponse>> GetCountriesAsync(string urlBase,
+            string servicePrefix,
+            string controller,
+            string request)
         {
             try
             {
-                var requestString = JsonConvert.SerializeObject(request);
-                var content = new StringContent(requestString, Encoding.UTF8, "application/json");
-                var client = new HttpClient
-                {
-                    BaseAddress = new Uri(urlBase)
-                };
+                /* var requestString = JsonConvert.SerializeObject(request);
+                 var content = new StringContent(requestString, Encoding.UTF8, "application/json");*/
+                var client = new HttpClient();
+              //  {
+                //    BaseAddress = new Uri(urlBase)
+               // };
 
-                var url = $"{servicePrefix}{controller}{requestString}";
+                var url = $"{urlBase}{servicePrefix}{controller}{request}";
                 //var url = "/rest/v2/all";
                 var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
@@ -45,11 +49,12 @@ namespace WorldCountries.Common.Service
                     };
                 }
 
-                var token = JsonConvert.DeserializeObject<CountriesResponse>(result);
+                var countries = JsonConvert.DeserializeObject<List<CountriesResponse>>(result);
                 return new Response<CountriesResponse>
                 {
                     IsSuccess = true,
-                    Result = token
+                    Result = countries
+                    //Message = "Ok"
                 };
             }
             catch (Exception ex)

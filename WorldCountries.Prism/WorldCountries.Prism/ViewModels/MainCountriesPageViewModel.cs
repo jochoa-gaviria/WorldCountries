@@ -41,14 +41,12 @@ namespace WorldCountries.Prism.ViewModels
                 return;
             }
 
-            var request = "all";
-
-            var response = await _apiService.GetCountriesAsync(url, "rest", "/v2", request);
+            var response = await _apiService.GetCountriesAsync(url, "/rest", "/v2", "/all");
 
             if (!response.IsSuccess)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", "The countries didn't charge suscessful", "Accept");
+                await App.Current.MainPage.DisplayAlert("Error", $"The countries didn't charge suscessful {response.Message}", "Accept");
                 return;
             }
 
@@ -59,7 +57,7 @@ namespace WorldCountries.Prism.ViewModels
             };
 
             await _navigationService.NavigateAsync("PropertiesPage", parameters);*/
-            Title = "List of countries";
+            Title = "List of countries OK!!!!!!";
             IsRunning = false;
         }
     }
