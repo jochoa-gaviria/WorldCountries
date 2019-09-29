@@ -11,7 +11,8 @@ namespace WorldCountries.Common.Service
         Task<Response<CountriesResponse>> GetCountriesAsync(
             string urlBase,
             string servicePrefix,
-            string controller);
+            string controller,
+            string request);
 
 
         Task<bool> CheckConnectionAsync(string url);

@@ -8,7 +8,7 @@ using WorldCountries.Common.Models;
 
 namespace WorldCountries.Common.Service
 {
-    class ApiService : IApiService
+    public class ApiService : IApiService
     {
         public async Task<bool> CheckConnectionAsync(string url)
         {
@@ -20,19 +20,20 @@ namespace WorldCountries.Common.Service
             return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
 
-        public async Task<Response<CountriesResponse>> GetCountriesAsync(string urlBase, string servicePrefix, string controller)
+        public async Task<Response<CountriesResponse>> GetCountriesAsync(string urlBase, string servicePrefix, string controller, string request)
         {
             try
             {
-                var requestString = JsonConvert.SerializeObject("all");
+                var requestString = JsonConvert.SerializeObject(request);
                 var content = new StringContent(requestString, Encoding.UTF8, "application/json");
                 var client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase)
                 };
 
-                var url = $"{servicePrefix}{controller}";
-                var response = await client.PostAsync(url, content);
+                var url = $"{servicePrefix}{controller}{requestString}";
+                //var url = "/rest/v2/all";
+                var response = await client.GetAsync(url);
                 var result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
