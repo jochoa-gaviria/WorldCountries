@@ -11,6 +11,7 @@
              BackgroundColor="{StaticResource colorBackgroud}"
              Title="{Binding Title}">
     
+    <!--TODO pagination or load more, short-->
     <ScrollView>
         <AbsoluteLayout>
             <StackLayout 
@@ -140,5 +141,4 @@
                 Duration="0.5"/>
         </AbsoluteLayout>
     </ScrollView>
-
 </ContentPage>
