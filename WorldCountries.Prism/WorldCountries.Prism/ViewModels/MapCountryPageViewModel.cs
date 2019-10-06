@@ -11,7 +11,7 @@ namespace WorldCountries.Prism.ViewModels
     {
         public MapCountryPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Map country page";
+            Title = "View on map";
         }
     }
 }

@@ -5,6 +5,7 @@
             xmlns:local="clr-namespace:WorldCountries.Prism.Views"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="WorldCountries.Prism.Views.CountryTabbedPage"
+            BackgroundColor="{StaticResource colorBackgroud}"
             Title="{Binding Title}">
 
     <TabbedPage.Children>

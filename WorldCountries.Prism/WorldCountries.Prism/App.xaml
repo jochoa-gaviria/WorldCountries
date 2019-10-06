@@ -8,5 +8,18 @@
 		<!-- Application resource dictionary -->
         <x:String x:Key="UrlAPI">https://restcountries.eu</x:String>
 
+        <!-- Colors -->
+        <Color x:Key="colorBackgroud">#03738C</Color>
+        <Color x:Key="colorPrimary">#037F8C</Color>
+        <Color x:Key="colorSecondary">#067302</Color>
+        <Color x:Key="colorDanger">#565BBF</Color>
+        <Color x:Key="colorAccent">#7E82D9</Color>
+        <Color x:Key="colorFont">#0D0D0D</Color>
+        <Color x:Key="colorFontInverse">#7E82D9</Color>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{StaticResource colorFont}" />
+        </Style>
+
     </Application.Resources>
 </prism:PrismApplication>

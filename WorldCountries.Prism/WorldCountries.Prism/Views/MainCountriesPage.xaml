@@ -8,6 +8,7 @@
              xmlns:ffTrans="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="WorldCountries.Prism.Views.MainCountriesPage"
+             BackgroundColor="{StaticResource colorBackgroud}"
              Title="{Binding Title}">
     
     <ScrollView>
