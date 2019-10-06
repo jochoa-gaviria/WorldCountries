@@ -2,6 +2,8 @@
 using Prism.Commands;
 using Prism.Navigation;
 using WorldCountries.Common.Models;
+using WorldCountries.Common.Helpers;
+using Newtonsoft.Json;
 
 namespace WorldCountries.Prism.ViewModels
 {
@@ -16,15 +18,10 @@ namespace WorldCountries.Prism.ViewModels
 
         public DelegateCommand SelectCountryCommand => _selectCountryCommand ?? (_selectCountryCommand = new DelegateCommand(SelectCountry));
 
-        private void SelectCountry()
+        private async void SelectCountry()
         {
-            /*var countries = response.Result;
-            var parameters = new NavigationParameters
-            {
-                { "countries", countries }
-            };
-
-            await _navigationService.NavigateAsync("PropertiesPage", parameters*/
+            Settings.Country = JsonConvert.SerializeObject(this);
+            await _navigationService.NavigateAsync("CountryTabbedPage");
         }
     }
 }

@@ -33,6 +33,9 @@ namespace WorldCountries.Prism
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainCountriesPage, MainCountriesPageViewModel>();
+            containerRegistry.RegisterForNavigation<CountryTabbedPage, CountryTabbedPageViewModel>();
+            containerRegistry.RegisterForNavigation<CountryPage, CountryPageViewModel>();
+            containerRegistry.RegisterForNavigation<MapCountryPage, MapCountryPageViewModel>();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace WorldCountries.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Countries main page";
+            Title = "Countries list";
             IsRunning = true;
             LoadCountriesAsycn();
         }
