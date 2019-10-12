@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
+using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using WorldCountries.Common.Helpers;
 using WorldCountries.Common.Models;
 using WorldCountries.Common.Service;
@@ -15,7 +15,9 @@ namespace WorldCountries.Prism.ViewModels
         private readonly IApiService _apiService;
         private readonly INavigationService _navigationService;
         private bool _isRunning;
+        private string _filter;
         private ObservableCollection<CountriesItemViewModel> _countries;
+        //private DelegateCommand _searchCommand;
 
         public MainCountriesPageViewModel(INavigationService navigationService,
             IApiService apiService) : base(navigationService)
@@ -33,6 +35,26 @@ namespace WorldCountries.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
+        //public string Filter
+        //{
+        //    get => _filter;
+        //    set => SetProperty(ref _filter, value);
+        //}
+
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                SetProperty(ref _filter, value);
+                SearchCountry();
+            }
+        }
+
+        private void SearchCountry()
+        {
+            //TODO
+        }
 
         public ObservableCollection<CountriesItemViewModel> Countries
         {
@@ -55,7 +77,6 @@ namespace WorldCountries.Prism.ViewModels
                 }
                 var response = LoadPersistenceCountries();
                 ShowCountries(response);
-
             }
             else
             {
@@ -74,6 +95,7 @@ namespace WorldCountries.Prism.ViewModels
                 Result = CountriesKept
             };
         }
+
         private async void ShowCountries(Response<CountriesResponse> response)
         {
             if (!response.IsSuccess)
@@ -92,9 +114,29 @@ namespace WorldCountries.Prism.ViewModels
                 Region = c.Region,
                 Alpha3Code = c.Alpha3Code,
                 Population = c.Population,
-                Flag = c.Flag
+                Flag = c.Flag,
+                Alpha2Code = c.Alpha2Code,
+                Subregion = c.Subregion,
+                Demonym = c.Demonym,
+                Area = c.Area,
+                Gini = c.Gini,
+                NativeName = c.NativeName,
+                NumericCode = c.NumericCode,
+                Cioc = c.Cioc,
+                TopLevelDomain = c.TopLevelDomain,
+                CallingCodes = c.CallingCodes,
+                AltSpellings = c.AltSpellings,
+                Latlng = c.Latlng,
+                Timezones = c.Timezones,
+                Borders = c.Borders,
+                Currencies = c.Currencies,
+                Languages = c.Languages,
+                Translations = c.Translations,
+                RegionalBlocs = c.RegionalBlocs
             }).ToList());
             IsRunning = false;
         }
+
+
     }
 }

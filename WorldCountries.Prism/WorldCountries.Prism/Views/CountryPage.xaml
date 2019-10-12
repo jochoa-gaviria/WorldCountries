@@ -30,7 +30,170 @@
                      CornersTransformType="AllCut" BottomRightCornerSize="8" TopLeftCornerSize="4"/>
                 </ffimageloading:CachedImage.Transformations>
             </ffimageloadingsvg:SvgCachedImage>
+            <Grid
+                Padding="10"
+                HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Capital"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Capital}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="Population"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Population, StringFormat='{0:N0}'}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Area"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Area, StringFormat='{0:N0}'}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="AlphaCode2"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Alpha2Code}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="AlphaCode3"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Alpha3Code}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Text="Region"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Region}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Text="Subregion"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Subregion}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="7"
+                        Text="Demonym"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="7"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Demonym}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="8"
+                        Text="GINI"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="8"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Gini, StringFormat='{0:N2}'}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="9"
+                        Text="NativeName"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="9"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.NativeName}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="10"
+                        Text="NumericCode"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="10"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.NumericCode}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="0"
+                        Grid.Row="11"
+                        Text="CIOC"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+                <Label
+                        Grid.Column="1"
+                        Grid.Row="11"
+                        FontAttributes="Bold"
+                        Text="{Binding Country.Cioc}"
+                        TextColor="{StaticResource colorSecondary}">
+                </Label>
+            </Grid>
         </StackLayout>
     </ScrollView>
-  
 </ContentPage>

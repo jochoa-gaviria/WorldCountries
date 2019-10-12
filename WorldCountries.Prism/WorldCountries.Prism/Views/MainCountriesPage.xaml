@@ -18,6 +18,15 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 Padding="10">
+                <Frame Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
+                    <SearchBar
+                        BackgroundColor="{StaticResource colorPrimary}"
+                        HeightRequest="46"
+                        Text="{Binding Filter, Mode=TwoWay}"
+                        Placeholder="Type here to find your country"
+                        SearchCommand="{Binding SearchCommand}">
+                    </SearchBar>
+                </Frame>
                 <ListView
                     BackgroundColor="Transparent"
                     SeparatorVisibility="None"
@@ -29,7 +38,8 @@
                                 <Frame
                                     CornerRadius="10"
                                     HasShadow="True"
-                                    Margin="0,0,0,5">
+                                    Margin="0,0,0,5"
+                                    BackgroundColor="{StaticResource colorAccent}">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
                                     </Frame.GestureRecognizers>
@@ -114,7 +124,7 @@
                                                 Grid.Column="1"
                                                 Grid.Row="4"
                                                 FontAttributes="Bold"
-                                                Text="{Binding Population}"/>
+                                                Text="{Binding Population, StringFormat='{0:N0}'}"/>
                                         </Grid>
                                         <Image
                                             Grid.Column="2"

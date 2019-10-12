@@ -4,6 +4,7 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using WorldCountries.Common.Helpers;
 using WorldCountries.Common.Models;
@@ -22,6 +23,7 @@ namespace WorldCountries.Prism.ViewModels
             get => _country;
             set => SetProperty(ref _country, value);
         }
+
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
