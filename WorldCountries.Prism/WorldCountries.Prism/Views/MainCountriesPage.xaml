@@ -10,9 +10,7 @@
              x:Class="WorldCountries.Prism.Views.MainCountriesPage"
              BackgroundColor="{StaticResource colorBackgroud}"
              Title="{Binding Title}">
-    
-    <!--TODO pagination or load more, short-->
-    <ScrollView>
+   
         <AbsoluteLayout>
             <StackLayout 
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -27,29 +25,50 @@
                         SearchCommand="{Binding SearchCommand}">
                     </SearchBar>
                 </Frame>
-                <ListView
+                <StackLayout Orientation="Horizontal" Padding="3" HorizontalOptions="CenterAndExpand" HeightRequest="40">
+                    <Button ImageSource="ic_sort" 
+                            Text="Name"
+                            FontSize="Micro"
+                            TextColor="{StaticResource colorSecondary}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding SortByNameCommand}"/>
+                    <Button ImageSource="ic_sort"
+                            Text="Size"
+                            FontSize="Micro"
+                            TextColor="{StaticResource colorSecondary}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding SortBySizeCommand}"/>
+                    <Button ImageSource="ic_sort"
+                            Text="Population"
+                            FontSize="Micro"
+                            TextColor="{StaticResource colorSecondary}"
+                            BackgroundColor="Transparent"
+                            Command="{Binding SortByPopulationCommand}"/>
+                </StackLayout>
+                <ScrollView>
+                    <ListView
                     BackgroundColor="Transparent"
                     SeparatorVisibility="None"
                     HasUnevenRows="True"
                     ItemsSource="{Binding Countries}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Frame
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame
                                     CornerRadius="10"
                                     HasShadow="True"
                                     Margin="0,0,0,5"
                                     BackgroundColor="{StaticResource colorAccent}">
-                                    <Frame.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
-                                    </Frame.GestureRecognizers>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <ffimageloadingsvg:SvgCachedImage
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding SelectCountryCommand}"/>
+                                        </Frame.GestureRecognizers>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <ffimageloadingsvg:SvgCachedImage
                                             Grid.Column="0"
                                             Source="{Binding Flag}"
                                             LoadingPlaceholder= "LoaderImage"
@@ -60,81 +79,82 @@
                                             DownsampleToViewSize = "true"
                                             WidthRequest="50"
                                             Aspect="AspectFit">
-                                            <ffimageloading:CachedImage.Transformations>
-                                                <ffTrans:CircleTransformation
+                                                <ffimageloading:CachedImage.Transformations>
+                                                    <ffTrans:CircleTransformation
                                                     BorderHexColor="#000000" 
                                                     BorderSize="3"
                                                 />
-                                            </ffimageloading:CachedImage.Transformations>
-                                        </ffimageloadingsvg:SvgCachedImage>
-                                        <Grid
+                                                </ffimageloading:CachedImage.Transformations>
+                                            </ffimageloadingsvg:SvgCachedImage>
+                                            <Grid
                                             Grid.Column="1">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Label
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Label
                                                 Grid.Column="0"
                                                 Grid.Row="0"
                                                 Text="Name"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="1"
                                                 Grid.Row="0"
                                                 FontAttributes="Bold"
                                                 Text="{Binding Name}"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="0"
                                                 Grid.Row="1"
                                                 Text="Code"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="1"
                                                 Grid.Row="1"
                                                 FontAttributes="Bold"
                                                 Text="{Binding Alpha3Code}"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="0"
                                                 Grid.Row="2"
                                                 Text="Capital"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="1"
                                                 Grid.Row="2"
                                                 FontAttributes="Bold"
                                                 Text="{Binding Capital}"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="0"
                                                 Grid.Row="3"
                                                 Text="Region"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="1"
                                                 Grid.Row="3"
                                                 FontAttributes="Bold"
                                                 Text="{Binding Region}"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="0"
                                                 Grid.Row="4"
                                                 Text="Population"/>
-                                            <Label
+                                                <Label
                                                 Grid.Column="1"
                                                 Grid.Row="4"
                                                 FontAttributes="Bold"
                                                 Text="{Binding Population, StringFormat='{0:N0}'}"/>
-                                        </Grid>
-                                        <Image
+                                            </Grid>
+                                            <Image
                                             Grid.Column="2"
                                             Source="ic_chevron_right"/>
-                                    </Grid>
-                                </Frame>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
             </StackLayout>
             <busyindicator:SfBusyIndicator  
                 AnimationType="Ball"
@@ -150,5 +170,4 @@
                 ViewBoxHeight="80" 
                 Duration="0.5"/>
         </AbsoluteLayout>
-    </ScrollView>
 </ContentPage>
