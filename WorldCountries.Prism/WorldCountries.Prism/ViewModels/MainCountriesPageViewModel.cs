@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace WorldCountries.Prism.ViewModels
         private bool _isRunning;
         private string _filter;
         private ObservableCollection<CountriesItemViewModel> _countries;
-        //private DelegateCommand _searchCommand;
+        private DelegateCommand _searchCommand;
 
         public MainCountriesPageViewModel(INavigationService navigationService,
             IApiService apiService) : base(navigationService)
@@ -50,10 +51,16 @@ namespace WorldCountries.Prism.ViewModels
                 SearchCountry();
             }
         }
+        public DelegateCommand SearchCommand => _searchCommand ?? (_searchCommand = new DelegateCommand(SearchCountry));
+
 
         private void SearchCountry()
         {
             //TODO
+            // Title = $"Filter {Filter}";
+            var response = LoadPersistenceCountries();
+            ShowCountriesFilterAsync(response);
+
         }
 
         public ObservableCollection<CountriesItemViewModel> Countries
@@ -76,12 +83,12 @@ namespace WorldCountries.Prism.ViewModels
                     return;
                 }
                 var response = LoadPersistenceCountries();
-                ShowCountries(response);
+                ShowCountriesAsync(response);
             }
             else
             {
                 var response = await _apiService.GetCountriesAsync(url, "/rest", "/v2", "/all");
-                ShowCountries(response);
+                ShowCountriesAsync(response);
             }
 
         }
@@ -96,7 +103,7 @@ namespace WorldCountries.Prism.ViewModels
             };
         }
 
-        private async void ShowCountries(Response<CountriesResponse> response)
+        private async void ShowCountriesAsync(Response<CountriesResponse> response)
         {
             if (!response.IsSuccess)
             {
@@ -136,7 +143,43 @@ namespace WorldCountries.Prism.ViewModels
             }).ToList());
             IsRunning = false;
         }
-
-
+        private async void ShowCountriesFilterAsync(Response<CountriesResponse> response)
+        {
+            if (!response.IsSuccess)
+            {
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert("Error", $"The countries didn't charge suscessful {response.Message}", "Accept");
+                return;
+            }
+            var countries = response.Result;
+            Countries = new ObservableCollection<CountriesItemViewModel>(countries.Select(c => new CountriesItemViewModel(_navigationService)
+            {
+                Name = c.Name,
+                Capital = c.Capital,
+                Region = c.Region,
+                Alpha3Code = c.Alpha3Code,
+                Population = c.Population,
+                Flag = c.Flag,
+                Alpha2Code = c.Alpha2Code,
+                Subregion = c.Subregion,
+                Demonym = c.Demonym,
+                Area = c.Area,
+                Gini = c.Gini,
+                NativeName = c.NativeName,
+                NumericCode = c.NumericCode,
+                Cioc = c.Cioc,
+                TopLevelDomain = c.TopLevelDomain,
+                CallingCodes = c.CallingCodes,
+                AltSpellings = c.AltSpellings,
+                Latlng = c.Latlng,
+                Timezones = c.Timezones,
+                Borders = c.Borders,
+                Currencies = c.Currencies,
+                Languages = c.Languages,
+                Translations = c.Translations,
+                RegionalBlocs = c.RegionalBlocs
+            }).ToList().Where(c => c.Name.ToLower().Contains(Filter.ToLower()) ||
+            c.Capital.ToLower().Contains(Filter.ToLower())));
+        }
     }
 }
