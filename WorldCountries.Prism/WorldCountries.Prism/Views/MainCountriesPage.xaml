@@ -16,17 +16,18 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 AbsoluteLayout.LayoutFlags="All"
                 Padding="10">
-                <Frame Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
-                    <SearchBar
+            <Frame Padding="0" HasShadow="True" HorizontalOptions="FillAndExpand"  VerticalOptions="Center">
+                <SearchBar
                         BackgroundColor="{StaticResource colorPrimary}"
                         HeightRequest="46"
                         Text="{Binding Filter, Mode=TwoWay}"
                         Placeholder="Type here to find your country"
                         SearchCommand="{Binding SearchCommand}">
-                    </SearchBar>
-                </Frame>
+                </SearchBar>
+            </Frame>
+            <ScrollView Orientation="Horizontal">
                 <StackLayout Orientation="Horizontal" Padding="3" HorizontalOptions="CenterAndExpand" HeightRequest="40">
-                    <Button ImageSource="ic_sort" 
+                <Button ImageSource="ic_sort" 
                             Text="Name"
                             FontSize="Micro"
                             TextColor="{StaticResource colorSecondary}"
@@ -45,7 +46,8 @@
                             BackgroundColor="Transparent"
                             Command="{Binding SortByPopulationCommand}"/>
                 </StackLayout>
-                <ScrollView>
+            </ScrollView>
+            <ScrollView>
                     <ListView
                     BackgroundColor="Transparent"
                     SeparatorVisibility="None"
