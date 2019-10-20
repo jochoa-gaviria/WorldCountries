@@ -3,6 +3,10 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using Android.Runtime;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
+
 
 namespace WorldCountries.Prism.Droid
 {
@@ -17,10 +21,22 @@ namespace WorldCountries.Prism.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.FormsMaps.Init(this, bundle);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App(new AndroidInitializer()));
         }
+        public override void OnRequestPermissionsResult(
+        int requestCode,
+        string[] permissions,
+        [GeneratedEnum] Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults);
+        }
     }
+    
 
     public class AndroidInitializer : IPlatformInitializer
     {
