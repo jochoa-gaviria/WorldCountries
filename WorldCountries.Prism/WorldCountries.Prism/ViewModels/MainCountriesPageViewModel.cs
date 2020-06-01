@@ -31,7 +31,7 @@ namespace WorldCountries.Prism.ViewModels
         {
             _navigationService = navigationService;
             _apiService = apiService;
-            Title = "Countries list";
+            Title = "Countries list!";
             IsRunning = true;
             LoadCountriesAsycn();
         }
